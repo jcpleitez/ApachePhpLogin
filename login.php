@@ -1,12 +1,19 @@
 <?php
 
 $Respuesta = "";
-if ($_POST['user'] == "admin" && $_POST['password'] == "admin") {
-  $Respuesta = "OK";
-}else {
-  $Respuesta = "Usuario o contraseña incorrectos"
+if ($_POST) {
+  if ($_POST['user'] == "admin" && $_POST['password'] == "admin") {
+    $Respuesta = "OK";
+    die();
+  }else {
+    $Respuesta = "Usuario o contraseña incorrectos";
+    header( "Location: login.html" );
+  }
+  phpAlert($Respuesta);
 }
 
-echo json_encode($Respuesta);
+function phpAlert($msg) {
+    echo '<script type="text/javascript">alert("' . $msg . '")</script>';
+}
 
 ?>
